@@ -29,18 +29,10 @@ public class MemberService {
         //memberRepository.findByName(member.getName()); // 여기서 ctrl+alt+v 누르면 아래와 같이 result가 return형에 맞게 자둥생성
         //Optional<Member> result = memberRepository.findByName(member.getName());
 
-        long start = System.currentTimeMillis();
-
-        try{
             validateDuplicateMember(member); // 중복 회원 검증.
 
             memberRepository.save(member);
             return member.getId();
-        } finally {
-            long finish = System.currentTimeMillis();
-            long timeMs = finish - start;
-            System.out.println("join = " + timeMs + "ms");
-        }
 
     }
 
@@ -55,15 +47,7 @@ public class MemberService {
      * 전체 회원 조회
      */
     public List<Member> findMembers(){
-        long start = System.currentTimeMillis();
-        try{
             return memberRepository.findAll();
-        } finally {
-            long finish = System.currentTimeMillis();
-            long timeMs = finish - start;
-            System.out.println("findMembers = " + timeMs + "ms");
-        }
-
     }
 
     public Optional<Member> findOne(Long memberId){
